@@ -1,4 +1,4 @@
-# rider app
+# rider_app
 
 ## Running in local development environment
 
@@ -10,8 +10,8 @@ mvn spring-boot:run
 
 ```
 mvn package -B -DskipTests
-docker build -t username/rider app:v1 .
-docker run username/rider app:v1
+docker build -t username/rider_app:v1 .
+docker run username/rider_app:v1
 ```
 
 ## Push images and running in Kubernetes
@@ -20,15 +20,15 @@ docker run username/rider app:v1
 docker login 
 # in case of docker hub, enter your username and password
 
-docker push username/rider app:v1
+docker push username/rider_app:v1
 ```
 
 Edit the deployment.yaml under the /kubernetes directory:
 ```
     spec:
       containers:
-        - name: rider app
-          image: username/rider app:latest   # change this image name
+        - name: rider_app
+          image: username/rider_app:latest   # change this image name
           ports:
             - containerPort: 8080
 
@@ -41,13 +41,13 @@ kubectl apply -f kubernetes/deployment.yaml
 
 See the pod status:
 ```
-kubectl get pods -l app=rider app
+kubectl get pods -l app=rider_app
 ```
 
 If you have no problem, you can connect to the service by opening a proxy between your local and the kubernetes by using this command:
 ```
 # new terminal
-kubectl port-forward deploy/rider app 8080:8080
+kubectl port-forward deploy/rider_app 8080:8080
 
 # another terminal
 http localhost:8080
@@ -55,7 +55,7 @@ http localhost:8080
 
 If you have any problem on running the pod, you can find the reason by hitting this:
 ```
-kubectl logs -l app=rider app
+kubectl logs -l app=rider_app
 ```
 
 Following problems may be occurred:

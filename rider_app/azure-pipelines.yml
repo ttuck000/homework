@@ -14,7 +14,7 @@ variables:
   # containerRegistryDockerConnection: 'acr'
   # environment: 'aks.default'
 - name: imageRepository
-  value: 'rider app'
+  value: 'rider_app'
 - name: dockerfilePath
   value: '**/Dockerfile'
 - name: tag
